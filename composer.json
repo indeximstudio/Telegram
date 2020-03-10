@@ -1,0 +1,26 @@
+{
+  "name": "indeximstudio/shipping-easy",
+  "type": "library",
+  "description": "Telegram for EvolutionCMS",
+  "keywords": [
+    "Telegram"
+  ],
+  "homepage": "https://github.com/indeximstudio/shipping-easy",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ruslan Kovalchuk",
+      "email": "info@indeximstudio.com",
+      "homepage": "http://indeximstudio.com/en/index.html",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Indeximstudio\\ShippingEasy\\": ""
+    }
+  }
+}
