@@ -1,11 +1,11 @@
 {
-  "name": "indeximstudio/shipping-easy",
+  "name": "indeximstudio/Telegram",
   "type": "library",
   "description": "Telegram for EvolutionCMS",
   "keywords": [
     "Telegram"
   ],
-  "homepage": "https://github.com/indeximstudio/shipping-easy",
+  "homepage": "https://github.com/indeximstudio/Telegram",
   "license": "MIT",
   "authors": [
     {
@@ -20,7 +20,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Indeximstudio\\ShippingEasy\\": ""
+      "Indeximstudio\\Telegram\\": ""
     }
   }
 }
