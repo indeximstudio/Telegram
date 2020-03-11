@@ -6,6 +6,9 @@
 
 Sending messages to Telegram
 
+````
+composer require indeximstudio/telegram
+````
 
 
 #### Usage example
