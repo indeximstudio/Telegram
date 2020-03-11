@@ -5,3 +5,15 @@
 [![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)]()
 
 Sending messages to Telegram
+
+
+
+####Usage example
+````
+(new Telegram())->sendMessages('text');
+````
+or
+````
+$Telegram = new Telegram();
+$Telegram->sendMessages('text');
+````
