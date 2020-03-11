@@ -8,7 +8,7 @@ Sending messages to Telegram
 
 
 
-####Usage example
+#### Usage example
 ````
 (new Telegram())->sendMessages('text');
 ````
