@@ -35,7 +35,7 @@ class Telegram
      */
     private function sendMessage($message, $chat_id)
     {
-        $message = urlencode($message);
+        $message = urlencode($this->getTitleMessage() . $message);
         $url = "https://api.telegram.org/bot{$this->config['token']}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$message}";
         $ch = curl_init();
         curl_setopt_array($ch, array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
@@ -51,5 +51,13 @@ class Telegram
             }
         }
         return $this->config = $this->bots[0];
+    }
+
+    private function getTitleMessage()
+    {
+        global $modx;
+        return MODX_SITE_URL . '
+' . __FILE__ . '
+';
     }
 }
