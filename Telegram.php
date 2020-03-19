@@ -57,7 +57,6 @@ class Telegram
     {
         global $modx;
         return MODX_SITE_URL . '
-' . __FILE__ . '
 ';
     }
 }
