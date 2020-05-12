@@ -36,7 +36,7 @@ class Telegram
     private function sendMessage($message, $chat_id)
     {
         if (is_array($message)) {
-            $message = json_encode(array_merge([$this->getTitleMessage()], $message));
+            $message = json_encode([$this->getTitleMessage(), 'data' => $message]);
         } else {
             $message = urlencode($this->getTitleMessage() . $message);
         }
