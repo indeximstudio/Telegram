@@ -35,7 +35,11 @@ class Telegram
      */
     private function sendMessage($message, $chat_id)
     {
-        $message = urlencode($this->getTitleMessage() . $message);
+        if (is_array($message)) {
+            $message = array_merge([$this->getTitleMessage()], $message);
+        } else {
+            $message = urlencode($this->getTitleMessage() . $message);
+        }
         $url = "https://api.telegram.org/bot{$this->config['token']}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$message}";
         $ch = curl_init();
         curl_setopt_array($ch, array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
