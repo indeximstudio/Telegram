@@ -36,10 +36,13 @@ class Telegram
     private function sendMessage($message, $chat_id)
     {
         if (is_array($message)) {
-            $message = json_encode([$this->getTitleMessage(), 'data' => $message]);
+            $message = json_encode([$this->getTitleMessage(), 'data' => $message], JSON_PRETTY_PRINT | JSON_UNESCAPED_LINE_TERMINATORS | JSON_UNESCAPED_SLASHES);
+        } elseif (is_object($message)) {
+            $message->site = $this->getTitleMessage();
         } else {
-            $message = urlencode($this->getTitleMessage() . $message);
+            $message = $this->getTitleMessage() . $message;
         }
+        $message = urlencode($message);
         $url = "https://api.telegram.org/bot{$this->config['token']}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$message}";
         $ch = curl_init();
         curl_setopt_array($ch, array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
