@@ -2,6 +2,9 @@
 
 namespace Indeximstudio\Telegram;
 
+use Indeximstudio\Telegram\components\InlineKeyboardButton;
+use Indeximstudio\Telegram\components\ReplyMarkup;
+
 class Telegram
 {
     public const TYPE_RECIPIENT = 'recipient';
@@ -9,11 +12,13 @@ class Telegram
 
     public $config;
     private $bots;
+    private $replyMarkup;
 
     function __construct($botName = '')
     {
         $this->bots = json_decode(evolutionCMS()->getConfig('client_telegramBots'), true);
         $this->getBot($botName);
+        $this->replyMarkup = new ReplyMarkup();
     }
 
     /**
@@ -44,6 +49,9 @@ class Telegram
         }
         $message = urlencode($message);
         $url = "https://api.telegram.org/bot{$this->config['token']}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$message}";
+        if ($this->replyMarkup->isNotEmpty()) {
+            $url.= "&reply_markup={$this->replyMarkup->toJson()}";
+        }
         $ch = curl_init();
         curl_setopt_array($ch, array(CURLOPT_URL => $url, CURLOPT_RETURNTRANSFER => true));
         curl_exec($ch);
@@ -65,5 +73,10 @@ class Telegram
         global $modx;
         return MODX_SITE_URL . '
 ';
+    }
+
+    public function addInlineButton(InlineKeyboardButton $button)
+    {
+        $this->replyMarkup->addInlineKeyboardButton($button);
     }
 }
